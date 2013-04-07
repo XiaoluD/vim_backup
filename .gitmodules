@@ -34,14 +34,13 @@
 	path = bundle/vim-omnicppcomplete
 	url = https://github.com/yandy/vim-omnicppcomplete.git
         ignore = dirty
-[submodule "bundle/TagHighlight"]
-	path = bundle/TagHighlight
-	url = git://github.com/abudden/TagHighlight.git
-        ignore = dirty
 [submodule "bundle/c.vim"]
 	path = bundle/c.vim
 	url = git://github.com/vim-scripts/c.vim.git
         ignore = dirty
-[submodule "bundle/SingleCompile"]
-	path = bundle/SingleCompile
+[submodule "bundle/tagHighlight"]
+	path = bundle/tagHighlight
+	url = git://github.com/vim-scripts/TagHighlight
+[submodule "bundle/singleCompile"]
+	path = bundle/singleCompile
 	url = https://github.com/xuhdev/SingleCompile.git
