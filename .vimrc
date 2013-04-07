@@ -75,7 +75,6 @@ nnoremap <C-l> gt               " Ctrl-l: next tag
 nnoremap <C-h> gT               " Ctrl-h: pre tag
 
 
-
 " conf for plugins
 " ------------------------------------------------------
 " conf for pathogen 
