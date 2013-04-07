@@ -81,8 +81,8 @@
 #恢复vim
 要想在其他机器使用相同配置，只需要：  
 
-    git clone http://github.com/xuelangZF/vim_backup ~/.vim	
-    cp ~/.vim/vimrc ~/.vimrc	
+    git clone http://github.com/xuelangZF/vim_backup.git ~/.vim	
+    ln -sf `pwd`/.vimrc ~/.vimrc
     cd ~/.vim	
     git submodule init	
     git submodule update	

@@ -81,7 +81,6 @@ nnoremap <C-h> gT               " Ctrl-h: pre tag
 " conf for pathogen 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
-Helptags
 
 " conf for Powerline 
 set nocompatible                         " Disable vi-compatibility
