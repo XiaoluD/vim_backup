@@ -16,7 +16,7 @@
         ignore = dirty
 [submodule "bundle/SingleCompile"]
 	path = bundle/SingleCompile
-	url = https://github.com/xuhdev/SingleCompile
+	url = https://github.com/xuhdev/SingleCompile.git
         ignore = dirty
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
