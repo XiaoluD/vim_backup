@@ -42,3 +42,6 @@
 	path = bundle/c.vim
 	url = git://github.com/vim-scripts/c.vim.git
         ignore = dirty
+[submodule "bundle/SingleCompile"]
+	path = bundle/SingleCompile
+	url = https://github.com/xuhdev/SingleCompile.git
