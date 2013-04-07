@@ -5,11 +5,11 @@
 ##仓库准备
 新建目录vim/bundle:  
 
-    mkdir -pv .vim/bundle
+    mkdir -pv vim/bundle
 
 然后把vim目录变成一个Git仓库:
 
-    cd .vim && git init
+    cd vim && git init
 
 备份.vimrc：
 
