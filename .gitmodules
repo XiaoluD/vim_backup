@@ -14,10 +14,6 @@
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
         ignore = dirty
-[submodule "bundle/SingleCompile"]
-	path = bundle/SingleCompile
-	url = https://github.com/xuhdev/SingleCompile.git
-        ignore = dirty
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
