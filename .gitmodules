@@ -1,36 +1,48 @@
 [submodule "bundle/vim-pathogen"]
 	path = bundle/vim-pathogen
 	url = git://github.com/tpope/vim-pathogen.git
+        ignore = dirty
 [submodule "bundle/nerdtree"]
 	path = bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
+        ignore = dirty
 [submodule "bundle/pydiction"]
 	path = bundle/pydiction
 	url = https://github.com/rkulla/pydiction.git
+        ignore = dirty
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+        ignore = dirty
 [submodule "bundle/SingleCompile"]
 	path = bundle/SingleCompile
 	url = https://github.com/xuhdev/SingleCompile
+        ignore = dirty
 [submodule "bundle/tagbar"]
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
+        ignore = dirty
 [submodule "bundle/vim-flake8"]
 	path = bundle/vim-flake8
 	url = git://github.com/vim-scripts/vim-flake8.git
+        ignore = dirty
 [submodule "bundle/vimwiki"]
 	path = bundle/vimwiki
 	url = git://github.com/vim-scripts/vimwiki
+        ignore = dirty
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline
+        ignore = dirty
 [submodule "bundle/vim-omnicppcomplete"]
 	path = bundle/vim-omnicppcomplete
 	url = https://github.com/yandy/vim-omnicppcomplete.git
+        ignore = dirty
 [submodule "bundle/TagHighlight"]
 	path = bundle/TagHighlight
 	url = git://github.com/abudden/TagHighlight.git
+        ignore = dirty
 [submodule "bundle/c.vim"]
 	path = bundle/c.vim
 	url = git://github.com/vim-scripts/c.vim.git
+        ignore = dirty
