@@ -78,7 +78,6 @@ nnoremap <C-h> gT               " Ctrl-h: pre tag
 " conf for plugins
 " ------------------------------------------------------
 " conf for pathogen 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
 
 " conf for Powerline 
