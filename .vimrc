@@ -146,4 +146,3 @@ let g:vimwiki_auto_checkbox=1
 "    execute command
 "endfunction
 "nmap cx :call <SID>surround()<CR>
-
