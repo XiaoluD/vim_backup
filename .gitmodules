@@ -44,3 +44,6 @@
 [submodule "bundle/TagHighlight"]
 	path = bundle/TagHighlight
 	url = https://github.com/vim-scripts/TagHighlight.git
+[submodule "bundle/MarkdownView"]
+	path = bundle/MarkdownView
+	url = https://github.com/jiazhoulvke/MarkdownView

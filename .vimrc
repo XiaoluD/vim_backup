@@ -21,9 +21,9 @@ set clipboard=unnamedplus 		" yank to system clipboard
 "Default Indentation
 set autoindent                       	" indent automatically
 set tabstop=8                        	" number of spaces a <Tab> counts for
-set shiftwidth=4 		     	" number of spaces each step of (auto)indent counts for
-set expandtab                           " tabs are converted to spaces automatically
+set shiftwidth=8 		     	" number of spaces each step of (auto)indent counts for
 set softtabstop=8                       " Number of spaces that a <Tab> counts for while using <BS>. 
+set expandtab
 
 "set hlsearch 			     	" enable highlight(default)
 "set nohlsearch                      	" cancel highlight 
@@ -69,6 +69,7 @@ autocmd Filetype c,cpp nmap <F5> :SCCompileRun<cr>
 autocmd! BufNewFile,BufRead *.c nmap <F12> :!indent -kr -i8 %<CR>
 autocmd! BufNewFile,BufRead *.h nmap <F12> :!indent -kr -i8 %<CR>
 autocmd! BufNewFile,BufRead *.cpp nmap <F12> :!indent -kr -i8 %<CR>
+autocmd Filetype c,cpp setlocal tabstop=8 shiftwidth=8 softtabstop=8
 
 " for tags
 nnoremap <C-l> gt               " Ctrl-l: next tag
