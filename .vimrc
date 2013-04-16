@@ -58,6 +58,7 @@ autocmd BufNewFile  *.py 0r ~/wiki/template/header.py
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype python setlocal foldmethod=indent
 autocmd Filetype python nmap  <F5> :!python %<CR>       " run the python
+autocmd Filetype python set textwidth=79 		" pep8 
 set foldlevel=99        		                " don't fold the code by default
 let g:pydiction_location = '~/etc/complete-dict'        " pydiction plugin required
 
