@@ -47,3 +47,6 @@
 [submodule "bundle/MarkdownView"]
 	path = bundle/MarkdownView
 	url = https://github.com/jiazhoulvke/MarkdownView
+[submodule "bundle/pydoc"]
+	path = bundle/pydoc
+	url = https://github.com/fs111/pydoc.vim.git

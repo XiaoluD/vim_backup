@@ -104,14 +104,23 @@ let g:vimwiki_camel_case = 0             "don't take the CamelCasedWords as a ne
 let g:vimwiki_list = [{
 			\ 'path' : '~/wiki/cs_wiki/',
 			\ 'path_html' : '~/Documents/wiki_html/cs_html/',
+			\ 'template_path': '~/wiki/template/', 
+			\ 'template_default': 'default',
+			\ 'template_ext': '.tpl',
 			\ 'auto_export' : 0},
 			\{
 			\ 'path' : '~/wiki/life_wiki/',
 			\ 'path_html' : '~/Documents/wiki_html/life_html/',
+			\ 'template_path': '~/wiki/template/', 
+			\ 'template_default': 'default',
+			\ 'template_ext': '.tpl',
 			\ 'auto_export' : 0},
 			\{
 			\ 'path' : '~/wiki/original_wiki/',
 			\ 'path_html' : '~/Documents/wiki_html/original_html/',
+			\ 'template_path': '~/wiki/template/', 
+			\ 'template_default': 'default',
+			\ 'template_ext': '.tpl',
 			\ 'auto_export' : 0},
 			\{
 			\ 'path' : '~/wiki/',
