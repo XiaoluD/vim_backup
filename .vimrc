@@ -8,7 +8,7 @@ set mouse=a 			    	" use mouse
 set number                           	" display line number
 set hls                              	" highlight the words match the search pattern
 set helplang=cn                      	" chinese help document 
-"set helplang=en                     
+" set helplang=en                     
 set nocompatible                     	" shutdown the vi compatibility mode
 set incsearch 			     	" show the pattern as it was typed so far
 set foldmethod=marker 		     	" folds are created manually
@@ -16,21 +16,21 @@ set pastetoggle=<F2>                 	" toggle the paste mode with <F2>
 set iskeyword+=_,$,@,%,#,-           	" set the keywords
 set confirm                           	" prompt when existing from an unsaved file
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,default,latin1
-set clipboard=unnamedplus 		" yank to system clipboard
+" set clipboard=unnamedplus 		" yank to system clipboard
 
-"Default Indentation
+" Default Indentation
 set autoindent                       	" indent automatically
 set tabstop=8                        	" number of spaces a <Tab> counts for
 set shiftwidth=8 		     	" number of spaces each step of (auto)indent counts for
 set softtabstop=8                       " Number of spaces that a <Tab> counts for while using <BS>. 
 set expandtab
 
-"set hlsearch 			     	" enable highlight(default)
-"set nohlsearch                      	" cancel highlight 
-"set wrap 			     	" enables wrap(default)
-"set nowrap                           	" cancel wrap
-"set textwidth=70 		     	" maximum width in a line
-"set tags=~/AdvanPro/tags             	" tags directory
+" set hlsearch 			     	" enable highlight(default)
+" set nohlsearch                      	" cancel highlight 
+" set wrap 			     	" enables wrap(default)
+" set nowrap                           	" cancel wrap
+" set textwidth=70 		     	" maximum width in a line
+" set tags=~/AdvanPro/tags             	" tags directory
 
 filetype on      		     	" enables filetype detection
 filetype plugin on                   	" enables filetype plugin
@@ -58,6 +58,7 @@ autocmd BufNewFile  *.py 0r ~/wiki/template/header.py
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype python setlocal foldmethod=indent
 autocmd Filetype python nmap  <F5> :!python %<CR>       " run the python
+autocmd Filetype python nmap  <F7> :!chmod +x %<CR>     " change mode 
 autocmd Filetype python set textwidth=79 		" pep8 
 set foldlevel=99        		                " don't fold the code by default
 let g:pydiction_location = '~/etc/complete-dict'        " pydiction plugin required
@@ -133,8 +134,29 @@ let g:vimwiki_valid_html_tags='a,br,blockquote'
 let g:vimwiki_folding=1
 let g:vimwiki_hl_headers=1
 let g:vimwiki_auto_checkbox=1
+let g:vimwiki_ext2syntax = {}
 
-
+if has("gui_running")
+        "set go=aAce              " 去掉难看的工具栏和滑动条
+        "set transparency=20      " 透明背景
+        set guifont=Monaco:h16    " 设置默认字体为monaco
+        "set guifont=Menlo:h16    " 设置默认字体为menlo
+        "set showtabline=2        " 开启自带的tab栏
+        "set columns=140          " 设置宽
+        "set lines=40             " 设置长
+        colorscheme desert
+        "colorscheme Tomorrow-Night
+        map <D-1> 1gt
+        map <D-2> 2gt
+        map <D-3> 3gt
+        map <D-4> 4gt
+        map <D-5> 5gt
+        map <D-6> 6gt
+        map <D-7> 7gt
+        map <D-8> 8gt
+        map <D-9> 9gt
+        map <D-0> :tablast<CR>
+endif
 
 " Go to last file(s) if invoked without arguments.
 " http://vim.wikia.com/wiki/Open_the_last_edited_file 

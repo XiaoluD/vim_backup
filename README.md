@@ -1,4 +1,4 @@
-简单备份vim配置文件以及插件
+[[简单备份vim配置文件以及插件]]
 
 #备份数据
 
@@ -82,8 +82,8 @@
 要想在其他机器使用相同配置，只需要：  
 
     git clone http://github.com/xuelangZF/vim_backup.git ~/.vim	
+    cd ~/.vim 
     ln -sf `pwd`/.vimrc ~/.vimrc
-    cd ~/.vim	
     git submodule init	
     git submodule update	
 
