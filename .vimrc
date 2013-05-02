@@ -39,7 +39,7 @@ color desert                         	" color theme
 " for convenience
 " ------------------------------------------------------
 " for all file
-nmap <S-w> :w !sudo tee %<CR>  " save file as root
+nmap <S-w> :w !sudo tee %<CR>           " save file as root
 " Brackets auto-complete
 " inoremap ( ()<ESC>i
 " inoremap { {}<ESC>i
@@ -57,8 +57,7 @@ autocmd Filetype vimwiki setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 " for python
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype python setlocal foldmethod=indent
-autocmd BufNewFile,BufRead *.py nmap  <F5> :!python %<CR>       " run the python
-autocmd BufNewFile,BufRead *.py nmap  <F7> :!chmod +x %<CR>     " change mode
+autocmd BufNewFile,BufRead *.py nmap  <F5> :!chmod +x %<CR>     " change authority
 autocmd BufNewFile *.py 0r ~/.vim/templates/header.py
 autocmd Filetype python setlocal textwidth=79 		        " pep8
 set foldlevel=99        		                        " don't fold the code by default
@@ -68,10 +67,6 @@ let g:pydiction_location = '~/.vim/templates/complete-dict'     " pydiction plug
 " SingleCompiler plugin required
 autocmd Filetype c,cpp nmap <F7> :SCCompile<cr>
 autocmd Filetype c,cpp nmap <F5> :SCCompileRun<cr>
-" format the code
-autocmd! BufNewFile,BufRead *.c nmap <F12> :!indent -kr -i8 %<CR>
-autocmd! BufNewFile,BufRead *.h nmap <F12> :!indent -kr -i8 %<CR>
-autocmd! BufNewFile,BufRead *.cpp nmap <F12> :!indent -kr -i8 %<CR>
 autocmd Filetype c,cpp setlocal tabstop=8 shiftwidth=8 softtabstop=8
 
 " for tags
@@ -138,10 +133,15 @@ let g:vimwiki_ext2syntax = {}
 " for conf that diff in different system
 if has("unix")
         let s:uname = system("uname")
-        if s:uname == "Darwin"
-                " Do Mac stuff here
-                "
-        elseif s:uname == "Linux"
+        " for mac
+        if s:uname == "Darwin\n"
+                set clipboard=unnamed
+                autocmd! BufNewFile,BufRead *.c,*.h,*.cpp nmap <F12> :!indent %<CR>
+        endif
+
+        " for linux
+        if s:uname == "Linux\n"
+                autocmd! BufNewFile,BufRead *.c,*.h,*.cpp nmap <F12> :!indent -kr -i8 %<CR>
                 set clipboard=unnamedplus 		" yank to system clipboard
                 set path=.,/usr/include 		" goto file path
         endif
@@ -213,4 +213,3 @@ endif
 "    execute command
 "endfunction
 "nmap cx :call <SID>surround()<CR>
-autocmd! BufNewFile,BufRead  *.py 0r ~/wiki/template/header.py
