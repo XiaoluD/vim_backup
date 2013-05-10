@@ -1,19 +1,20 @@
 syntax on                            	" support syntax highlight
 set showmatch                        	" jump to the matching bracket
-set ignorecase                       	" the case of normal letters is ignored
+set ignorecase smartcase                " the case of normal letters is ignored
 set showmode                         	" show the mode
 set history=1000
 set mouse=a 			    	" use mouse
 set number                           	" display line number
 set hls                              	" highlight the words match the search pattern
-set helplang=cn                      	" chinese help document
-" set helplang=en
 set nocompatible                     	" shutdown the vi compatibility mode
 set incsearch 			     	" show the pattern as it was typed so far
 set foldmethod=marker 		     	" folds are created manually
 set pastetoggle=<F2>                 	" toggle the paste mode with <F2>
 set iskeyword+=_,$,@,%,#,-           	" set the keywords
 set confirm                           	" prompt when existing from an unsaved file
+set wrap linebreak nolist               " wrap at a character in the breakat option
+set textwidth=0 		     	" maximum width in a line
+set spelllang=en                        " spell checking
 set fileencodings=ucs-bom,utf-8,cp936,gb18030,default,latin1
 
 " Default Indentation
@@ -27,8 +28,9 @@ set expandtab
 " set nohlsearch                      	" cancel highlight
 " set wrap 			     	" enables wrap(default)
 " set nowrap                           	" cancel wrap
-" set textwidth=70 		     	" maximum width in a line
 " set tags=~/AdvanPro/tags             	" tags directory
+" set helplang=cn                      	" Chinese help document
+" set helplang=en
 
 filetype on      		     	" enables filetype detection
 filetype plugin on                   	" enables filetype plugin
@@ -36,10 +38,11 @@ filetype indent on 		     	" enables filetype indent
 color desert                         	" color theme
 
 
-" for convenience
-" ------------------------------------------------------
-" for all file
-nmap <S-w> :w !sudo tee %<CR>           " save file as root
+" for all file        
+nmap <S-w> :w !sudo tee %<CR>           " save file as root 
+nmap <Leader>sp :set spell!<CR>         " Toggle spell checking on and off with \sp
+
+
 " Brackets auto-complete
 " inoremap ( ()<ESC>i
 " inoremap { {}<ESC>i
@@ -47,19 +50,20 @@ nmap <S-w> :w !sudo tee %<CR>           " save file as root
 
 " for vimwiki
 autocmd Filetype vimwiki ab hl {{{class="brush:python"}}}
-autocmd Filetype vimwiki ab tag <a name=""> </a>
+autocmd Filetype vimwiki ab tab <div id=""></div>
 autocmd Filetype vimwiki ab jump <a href="#"> </a>
 autocmd Filetype vimwiki ab \n </br>
 autocmd Filetype vimwiki ab pi {{../picture/.png\|\|title=""}}
 autocmd Filetype vimwiki ab do _//todo_
 autocmd Filetype vimwiki setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype vimwiki nmap <Leader>bd 0i*<ESC>A*<ESC>
 
 " for python
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype python setlocal foldmethod=indent
+autocmd Filetype python setlocal textwidth=79 		        " pep8
 autocmd BufNewFile,BufRead *.py nmap  <F5> :!chmod +x %<CR>     " change authority
 autocmd BufNewFile *.py 0r ~/.vim/templates/header.py
-autocmd Filetype python setlocal textwidth=79 		        " pep8
 set foldlevel=99        		                        " don't fold the code by default
 let g:pydiction_location = '~/.vim/templates/complete-dict'     " pydiction plugin required
 
@@ -124,7 +128,7 @@ let g:vimwiki_list = [{
 			\ 'template_default': 'main',
 			\ 'template_ext': '.tpl',
 			\ 'auto_export' : 0}]
-let g:vimwiki_valid_html_tags='a,br,blockquote'
+let g:vimwiki_valid_html_tags='a,br,blockquote,div'
 let g:vimwiki_folding=1
 let g:vimwiki_hl_headers=1
 let g:vimwiki_auto_checkbox=1

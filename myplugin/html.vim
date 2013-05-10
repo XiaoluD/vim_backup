@@ -1,15 +1,18 @@
-" modified in 2013.4.20 to use bootstrap
-" cd ~/.vim/myplugin
-" ln -sf `pwd`/html.vim ~/.vim/bundle/vimwiki/autoload/vimwiki/html.vim
-
-
 " vim:tabstop=2:shiftwidth=2:expandtab:foldmethod=marker:textwidth=79
 " Vimwiki autoload plugin file
 " Export to HTML
 " Author: Maxim Kim <habamax@gmail.com>
 " Home: http://code.google.com/p/vimwiki/
 
-" XXX: This file should be refactored!
+" TODO: We need vimwiki abstract syntax tree. If properly designed it wourld
+" greatly symplify different syntax to HTML generation.
+"
+" vimwiki   --            --> PDF
+"             \          /
+" markdown  -----> AST -----> HTML
+"             /          \
+" mediawiki --            --> Latex
+"
 
 " Load only once {{{
 if exists("g:loaded_vimwiki_html_auto") || &cp
@@ -142,22 +145,12 @@ endfunction "}}}
 
 function! s:safe_html(line) "{{{
   " escape & < > when producing HTML text
-  " uses variables s:lt_pattern, s:gt_pattern that are
-  " set in vimwiki#html#Wiki2HTML() according to  g:vimwiki_valid_html_tags
-  "" htmlize symbols: < > &
-
+  " s:lt_pattern, s:gt_pattern depend on g:vimwiki_valid_html_tags
+  " and are set in vimwiki#html#Wiki2HTML()
   let line = substitute(a:line, '&', '\&amp;', 'g')
-  " the following depends on g:vimwiki_valid_html_tags
   let line = substitute(line,s:lt_pattern,'\&lt;', 'g')
   let line = substitute(line,s:gt_pattern,'\&gt;', 'g')
 
-  "let tags = join(split(g:vimwiki_valid_html_tags, '\s*,\s*'), '\|')
-  "let line = substitute(line,'<\%(/\?\%('
-  "      \.tags.'\)\%(\s\{-1}\S\{-}\)\{-}/\?>\)\@!',
-  "      \'\&lt;', 'g')
-  "let line = substitute(line,'\%(</\?\%('
-  "      \.tags.'\)\%(\s\{-1}\S\{-}\)\{-}/\?\)\@<!>',
-  "      \'\&gt;', 'g')
   return line
 endfunction "}}}
 
@@ -234,7 +227,7 @@ function! s:get_html_toc(toc_list) "{{{
   let plevel = 0
   for [level, text, id] in a:toc_list
     if level > plevel
-      call add(toc, '<ul class="nav">')    "add the nav
+      call add(toc, '<ul class="nav">')
     elseif level < plevel
       let plevel = s:close_list(toc, plevel, level)
     endif
@@ -461,11 +454,10 @@ function! s:tag_wikilink(value) "{{{
   if g:vimwiki_debug > 1
     echom '[[idx='.idx.', scheme='.scheme.', path='.path.', subdir='.subdir.', lnk='.lnk.', ext='.ext.']]'
   endif
-  let url = escape(url, '#')
   let line = vimwiki#html#linkify_link(url, descr)
   return line
 endfunction "}}}
-"}}} v1.3 links
+"}}}
 
 
 function! s:tag_remove_internal_link(value) "{{{
@@ -1016,7 +1008,7 @@ function! s:process_tag_h(line, id) "{{{
 
     let h_number = ''
     for l in range(1, h_level-1)
-      let h_number .= a:id[l].'_'           "change the id style
+      let h_number .= a:id[l].'_'
     endfor
     let h_number .= a:id[h_level]
 
@@ -1357,13 +1349,17 @@ endfunction " }}}
 
 function! vimwiki#html#CustomWiki2HTML(path, wikifile, force) "{{{
   call vimwiki#base#mkdir(a:path)
-  execute '!'.VimwikiGet('custom_wiki2html'). ' '
+  echomsg system(VimwikiGet('custom_wiki2html'). ' '.
       \ a:force. ' '.
       \ VimwikiGet('syntax'). ' '.
       \ strpart(VimwikiGet('ext'), 1). ' '.
-      \ a:path. ' '.
-      \ a:wikifile. ' '.
-      \ s:default_CSS_full_name(a:path)
+      \ shellescape(a:path, 1). ' '.
+      \ shellescape(a:wikifile, 1). ' '.
+      \ shellescape(s:default_CSS_full_name(a:path), 1). ' '.
+      \ (len(VimwikiGet('template_path'))    > 1 ? shellescape(expand(VimwikiGet('template_path')), 1) : '-'). ' '.
+      \ (len(VimwikiGet('template_default')) > 0 ? VimwikiGet('template_default')                      : '-'). ' '.
+      \ (len(VimwikiGet('template_ext'))     > 0 ? VimwikiGet('template_ext')                          : '-'). ' '.
+      \ (len(VimwikiGet('subdir'))           > 0 ? shellescape(s:root_path(VimwikiGet('subdir')), 1)   : '-'))
 endfunction " }}}
 
 function! vimwiki#html#Wiki2HTML(path_html, wikifile) "{{{
@@ -1420,8 +1416,8 @@ function! vimwiki#html#Wiki2HTML(path_html, wikifile) "{{{
     let s:gt_pattern = '>'
     if g:vimwiki_valid_html_tags != ''
       let tags = join(split(g:vimwiki_valid_html_tags, '\s*,\s*'), '\|')
-      let s:lt_pattern = '<\%(/\?\%('.tags.'\)\%(\s\{-1}\S\{-}\)\{-}/\?>\)\@!'
-      let s:gt_pattern = '\%(</\?\%('.tags.'\)\%(\s\{-1}\S\{-}\)\{-}/\?\)\@<!>'
+      let s:lt_pattern = '\c<\%(/\?\%('.tags.'\)\%(\s\{-1}\S\{-}\)\{-}/\?>\)\@!'
+      let s:gt_pattern = '\c\%(</\?\%('.tags.'\)\%(\s\{-1}\S\{-}\)\{-}/\?\)\@<!>'
     endif
 
     for line in lsource
@@ -1571,7 +1567,7 @@ function! vimwiki#html#WikiAll2HTML(path_html) "{{{
 endfunction "}}}
 
 function! s:file_exists(fname) "{{{
-  return !empty(getftype(a:fname))
+  return !empty(getftype(expand(a:fname)))
 endfunction "}}}
 
 " uses VimwikiGet('path')
