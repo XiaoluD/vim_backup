@@ -3,6 +3,7 @@ set showmatch                        	" jump to the matching bracket
 set ignorecase smartcase                " the case of normal letters is ignored
 set showmode                         	" show the mode
 set history=1000
+set showcmd
 set mouse=a 			    	" use mouse
 set number                           	" display line number
 set hls                              	" highlight the words match the search pattern
@@ -39,9 +40,8 @@ color desert                         	" color theme
 
 
 " for all file        
-nmap <S-w> :w !sudo tee %<CR>           " save file as root 
-nmap <Leader>sp :set spell!<CR>         " Toggle spell checking on and off with \sp
-
+nmap <S-w> :w !sudo tee %<CR>
+nmap <Leader>sp :set spell!<CR>|        " Toggle spell checking on and off with \sp
 
 " Brackets auto-complete
 " inoremap ( ()<ESC>i
@@ -57,13 +57,14 @@ autocmd Filetype vimwiki ab pi {{../picture/.png\|\|title=""}}
 autocmd Filetype vimwiki ab do _//todo_
 autocmd Filetype vimwiki setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype vimwiki nmap <Leader>bd 0i*<ESC>A*<ESC>
+autocmd BufWritePre *.wiki  :call WikiDateInsert()
 
 " for python
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype python setlocal foldmethod=indent
-autocmd Filetype python setlocal textwidth=79 		        " pep8
-autocmd BufNewFile,BufRead *.py nmap  <F5> :!chmod +x %<CR>     " change authority
-autocmd BufNewFile *.py 0r ~/.vim/templates/header.py
+autocmd Filetype python setlocal textwidth=79
+autocmd BufNewFile,BufRead *.py nmap  <F5> :!chmod +x %<CR>
+autocmd BufNewFile *.py 0r ~/.vim/templates/header.py | $
 set foldlevel=99        		                        " don't fold the code by default
 let g:pydiction_location = '~/.vim/templates/complete-dict'     " pydiction plugin required
 
@@ -74,12 +75,10 @@ autocmd Filetype c,cpp nmap <F5> :SCCompileRun<cr>
 autocmd Filetype c,cpp setlocal tabstop=8 shiftwidth=8 softtabstop=8
 
 " for tags
-nnoremap <C-l> gt               " Ctrl-l: next tag
-nnoremap <C-h> gT               " Ctrl-h: pre tag
+nnoremap <C-l> gt|              " Ctrl-l: next tag
+nnoremap <C-h> gT|              " Ctrl-h: pre tag
 
 
-" conf for plugins
-" ------------------------------------------------------
 " conf for pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
@@ -128,7 +127,7 @@ let g:vimwiki_list = [{
 			\ 'template_default': 'main',
 			\ 'template_ext': '.tpl',
 			\ 'auto_export' : 0}]
-let g:vimwiki_valid_html_tags='a,br,blockquote,div'
+let g:vimwiki_valid_html_tags='a,br,blockquote,div,span'
 let g:vimwiki_folding=1
 let g:vimwiki_hl_headers=1
 let g:vimwiki_auto_checkbox=1
@@ -146,8 +145,8 @@ if has("unix")
         " for linux
         if s:uname == "Linux\n"
                 autocmd! BufNewFile,BufRead *.c,*.h,*.cpp nmap <F12> :!indent -kr -i8 %<CR>
-                set clipboard=unnamedplus 		" yank to system clipboard
-                set path=.,/usr/include 		" goto file path
+                set clipboard=unnamedplus 	" yank to system clipboard
+                set path=.,/usr/include 	" goto file path
         endif
 endif
 
@@ -171,30 +170,24 @@ if has("gui_running")
                 map <D-8> 8gt
                 map <D-9> 9gt
                 map <D-0> :tablast<CR>
-
-                " use MacVim fullscreen option
-                let s:lines=&lines
-                let s:columns=&columns
-                func! FullScreenEnter()
-                        set lines=999 columns=999
-                        set fu
-                endf
-                func! FullScreenLeave()
-                        let &lines=s:lines
-                        let &columns=s:columns
-                        set nofu
-                endf
-                func! FullScreenToggle()
-                        if &fullscreen
-                                call FullScreenLeave()
-                        else
-                                call FullScreenEnter()
-                        endif
-                endf
-                " <Leader>ff chage screen
-                nmap <Leader>ff  :call FullScreenToggle()<cr>
         endif
 endif
+
+
+" User-defined functions
+function! WikiDateInsert()
+        let l:winview = winsaveview()
+        0
+        read !date
+        0 delete
+        call winrestview(l:winview)
+endfunction
+
+
+
+
+
+
 
 " Go to last file(s) if invoked without arguments.
 " http://vim.wikia.com/wiki/Open_the_last_edited_file
