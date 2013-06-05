@@ -48,6 +48,9 @@ nmap <Leader>sp :set spell!<CR>|        " Toggle spell checking on and off with 
 " inoremap { {}<ESC>i
 " inoremap [ []<ESC>i
 
+" syntastic
+let g:syntastic_python_flake8_args='--ignore=E501'
+
 " for vimwiki
 autocmd Filetype vimwiki ab hl {{{class="brush:python"}}}
 autocmd Filetype vimwiki ab tab <div id=""></div>
@@ -55,6 +58,7 @@ autocmd Filetype vimwiki ab jump <a href="#"> </a>
 autocmd Filetype vimwiki ab \n </br>
 autocmd Filetype vimwiki ab pi {{../picture/.png\|\|title=""}}
 autocmd Filetype vimwiki ab do _//todo_
+autocmd Filetype vimwiki ab fi _//tofinish_
 autocmd Filetype vimwiki setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype vimwiki nmap <Leader>bd 0i*<ESC>A*<ESC>
 autocmd BufWritePre *.wiki  :call WikiDateInsert()
@@ -67,6 +71,9 @@ autocmd BufNewFile,BufRead *.py nmap  <F5> :!chmod +x %<CR>
 autocmd BufNewFile *.py 0r ~/.vim/templates/header.py | $
 set foldlevel=99        		                        " don't fold the code by default
 let g:pydiction_location = '~/.vim/templates/complete-dict'     " pydiction plugin required
+
+" for bash shell
+autocmd BufNewFile *.sh 0r ~/.vim/templates/header.sh | $
 
 " for c, cpp
 " SingleCompiler plugin required
@@ -98,6 +105,8 @@ let g:tagbar_right = 1                   " show the tagbar in the right
 " let g:tagbar_left = 1
 
 " conf for vimwiki
+let wiki = {}
+let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
 let g:vimwiki_camel_case = 0             "don't take the CamelCasedWords as a new wiki
 let g:vimwiki_list = [{
 			\ 'path' : '~/wiki/cs_wiki/',
@@ -182,11 +191,6 @@ function! WikiDateInsert()
         0 delete
         call winrestview(l:winview)
 endfunction
-
-
-
-
-
 
 
 " Go to last file(s) if invoked without arguments.
