@@ -20,9 +20,9 @@ set fileencodings=ucs-bom,utf-8,cp936,gb18030,default,latin1
 
 " Default Indentation
 set autoindent                       	" indent automatically
-set tabstop=8                        	" number of spaces a <Tab> counts for
-set shiftwidth=8 		     	" number of spaces each step of (auto)indent counts for
-set softtabstop=8                       " Number of spaces that a <Tab> counts for while using <BS>.
+set tabstop=4                        	" number of spaces a <Tab> counts for
+set shiftwidth=4 		     	" number of spaces each step of (auto)indent counts for
+set softtabstop=4                       " Number of spaces that a <Tab> counts for while using <BS>.
 set expandtab
 
 " set hlsearch 			     	" enable highlight(default)
@@ -42,6 +42,10 @@ color desert                         	" color theme
 " for all file        
 nmap <S-w> :w !sudo tee %<CR>
 nmap <Leader>sp :set spell!<CR>|        " Toggle spell checking on and off with \sp
+ab mo <!-- more -->
+ab hea ---layout: blogtitle: tags:category:---
+
+
 
 " Brackets auto-complete
 " inoremap ( ()<ESC>i
@@ -59,12 +63,10 @@ autocmd Filetype vimwiki ab \n </br>
 autocmd Filetype vimwiki ab pi {{../picture/.png\|\|title=""}}
 autocmd Filetype vimwiki ab do _//todo_
 autocmd Filetype vimwiki ab fi _//tofinish_
-autocmd Filetype vimwiki setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype vimwiki nmap <Leader>bd 0i*<ESC>A*<ESC>
 autocmd BufWritePre *.wiki  :call WikiDateInsert()
 
 " for python
-autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
 autocmd Filetype python setlocal foldmethod=indent
 autocmd Filetype python setlocal textwidth=79
 autocmd BufNewFile,BufRead *.py nmap  <F5> :!chmod +x %<CR>
@@ -88,7 +90,7 @@ nnoremap <C-h> gT|              " Ctrl-h: pre tag
 
 " conf for pathogen
 runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
+execute pathogen#infect()
 
 " conf for Powerline
 set laststatus=2                         " Always show the statusline

@@ -34,10 +34,6 @@
 	path = bundle/vim-omnicppcomplete
 	url = https://github.com/yandy/vim-omnicppcomplete.git
         ignore = dirty
-[submodule "bundle/c.vim"]
-	path = bundle/c.vim
-	url = git://github.com/vim-scripts/c.vim.git
-        ignore = dirty
 [submodule "bundle/SingleCompile"]
 	path = bundle/SingleCompile
 	url = https://github.com/xuhdev/SingleCompile.git
@@ -57,3 +53,9 @@
 [submodule "bundle/vim-javascript"]
 	path = bundle/vim-javascript
 	url = git://github.com/pangloss/vim-javascript.git
+[submodule "bundle/zencoding"]
+	path = bundle/zencoding
+	url = git://github.com/mattn/zencoding-vim.git
+[submodule "bundle/xptemplate"]
+	path = bundle/xptemplate
+	url = git://github.com/vim-scripts/xptemplate.git
