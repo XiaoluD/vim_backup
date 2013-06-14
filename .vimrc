@@ -75,7 +75,8 @@ autocmd Filetype python setlocal textwidth=79
 autocmd BufNewFile,BufRead *.py nmap  <F10> :!chmod +x %<CR>
 autocmd BufNewFile *.py 0r ~/.vim/templates/header.py | $
 set foldlevel=99        		                        " don't fold the code by default
-let g:pydiction_location = '~/.vim/templates/complete-dict'     " pydiction plugin required
+" pydiction plugin required
+let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 
 " for bash shell
 autocmd BufNewFile *.sh 0r ~/.vim/templates/header.sh | $
