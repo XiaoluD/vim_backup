@@ -30,10 +30,6 @@
 	path = bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline
         ignore = dirty
-[submodule "bundle/vim-omnicppcomplete"]
-	path = bundle/vim-omnicppcomplete
-	url = https://github.com/yandy/vim-omnicppcomplete.git
-        ignore = dirty
 [submodule "bundle/SingleCompile"]
 	path = bundle/SingleCompile
 	url = https://github.com/xuhdev/SingleCompile.git
