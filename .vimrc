@@ -94,7 +94,7 @@ nnoremap <C-h> gT|              " Ctrl-h: pre tag
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 " To disable a plugin, add it's bundle name to the following list
 let g:pathogen_disabled = []
-if v:version < '703584'
+if v:version < '703'
     call add(g:pathogen_disabled, 'YouCompleteMe')
 endif
 execute pathogen#infect()
