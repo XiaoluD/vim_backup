@@ -18,14 +18,6 @@
 	path = bundle/tagbar
 	url = https://github.com/majutsushi/tagbar
         ignore = dirty
-[submodule "bundle/vim-flake8"]
-	path = bundle/vim-flake8
-	url = git://github.com/vim-scripts/vim-flake8.git
-        ignore = dirty
-[submodule "bundle/vimwiki"]
-	path = bundle/vimwiki
-	url = git://github.com/vim-scripts/vimwiki
-        ignore = dirty
 [submodule "bundle/vim-powerline"]
 	path = bundle/vim-powerline
 	url = https://github.com/Lokaltog/vim-powerline
@@ -33,14 +25,6 @@
 [submodule "bundle/SingleCompile"]
 	path = bundle/SingleCompile
 	url = https://github.com/xuhdev/SingleCompile.git
-        ignore = dirty
-[submodule "bundle/TagHighlight"]
-	path = bundle/TagHighlight
-	url = https://github.com/vim-scripts/TagHighlight.git
-        ignore = dirty
-[submodule "bundle/pydoc"]
-	path = bundle/pydoc
-	url = https://github.com/fs111/pydoc.vim.git
         ignore = dirty
 [submodule "bundle/YouCompleteMe"]
 	path = bundle/YouCompleteMe

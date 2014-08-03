@@ -59,15 +59,15 @@ autocmd Filetype markdown ab mo <!-- more -->
 autocmd Filetype markdown ab hea ---layout: blogtitle: tags:category:---
 
 " for vimwiki
-autocmd Filetype vimwiki ab hl {{{class="brush:python"}}}
-autocmd Filetype vimwiki ab tab <div id=""></div>
-autocmd Filetype vimwiki ab jump <a href="#"> </a>
-autocmd Filetype vimwiki ab \n </br>
-autocmd Filetype vimwiki ab pi {{../picture/.png\|\|title=""}}
-autocmd Filetype vimwiki ab do _//todo_
-autocmd Filetype vimwiki ab fi _//tofinish_
-autocmd Filetype vimwiki nmap <Leader>bd 0i*<ESC>A*<ESC>
-autocmd BufWritePre *.wiki  :call WikiDateInsert()
+" autocmd Filetype vimwiki ab hl {{{class="brush:python"}}}
+" autocmd Filetype vimwiki ab tab <div id=""></div>
+" autocmd Filetype vimwiki ab jump <a href="#"> </a>
+" autocmd Filetype vimwiki ab \n </br>
+" autocmd Filetype vimwiki ab pi {{../picture/.png\|\|title=""}}
+" autocmd Filetype vimwiki ab do _//todo_
+" autocmd Filetype vimwiki ab fi _//tofinish_
+" autocmd Filetype vimwiki nmap <Leader>bd 0i*<ESC>A*<ESC>
+" autocmd BufWritePre *.wiki  :call WikiDateInsert()
 
 " for python
 autocmd Filetype python setlocal foldmethod=indent
@@ -107,50 +107,6 @@ let g:Powerline_symbols = 'unicode'
 " conf for NERDTree
 nmap <C-t> :NERDTreeToggle<CR>
 
-" conf for tagbar: list the tags(function, class, variable, etc)
-nmap <F3> :TagbarToggle<CR>
-let g:tagbar_ctags_bin='/usr/bin/ctags' 
-let g:tagbar_width = 40        " set tagbar's width 40
-let g:tagbar_right = 1         " show the tagbar in the right
-" let g:tagbar_left = 1
-
-" conf for vimwiki
-let wiki = {}
-let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
-let g:vimwiki_camel_case = 0   "don't take the CamelCasedWords as a new wiki
-let g:vimwiki_list = [{
-			\ 'path' : '~/wiki/cs_wiki/',
-			\ 'path_html' : '~/Documents/wiki_html/cs_html/',
-			\ 'template_path': '~/.vim/templates/',
-			\ 'template_default': 'default',
-			\ 'template_ext': '.tpl',
-			\ 'auto_export' : 0},
-			\{
-			\ 'path' : '~/wiki/life_wiki/',
-			\ 'path_html' : '~/Documents/wiki_html/life_html/',
-			\ 'template_path': '~/.vim/templates/',
-			\ 'template_default': 'default',
-			\ 'template_ext': '.tpl',
-			\ 'auto_export' : 0},
-			\{
-			\ 'path' : '~/wiki/original_wiki/',
-			\ 'path_html' : '~/Documents/wiki_html/original_html/',
-			\ 'template_path': '~/.vim/templates/',
-			\ 'template_default': 'default',
-			\ 'template_ext': '.tpl',
-			\ 'auto_export' : 0},
-			\{
-			\ 'path' : '~/wiki/',
-			\ 'path_html' : '~/Documents/wiki_html/',
-			\ 'template_path': '~/.vim/templates/',
-			\ 'template_default': 'main',
-			\ 'template_ext': '.tpl',
-			\ 'auto_export' : 0}]
-let g:vimwiki_valid_html_tags='a,br,blockquote,div,span'
-let g:vimwiki_folding=1
-let g:vimwiki_hl_headers=1
-let g:vimwiki_auto_checkbox=1
-let g:vimwiki_ext2syntax = {}
 
 " for conf that diff in different system
 if has("unix")
@@ -191,16 +147,60 @@ if has("gui_running")
                 map <D-0> :tablast<CR>
         endif
 endif
+" conf for tagbar: list the tags(function, class, variable, etc)
+" nmap <F3> :TagbarToggle<CR>
+" let g:tagbar_ctags_bin='/usr/bin/ctags' 
+" let g:tagbar_width = 40        " set tagbar's width 40
+" let g:tagbar_right = 1         " show the tagbar in the right
+" let g:tagbar_left = 1
+
+" conf for vimwiki
+" let wiki = {}
+" let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
+" let g:vimwiki_camel_case = 0   "don't take the CamelCasedWords as a new wiki
+" let g:vimwiki_list = [{
+" 			\ 'path' : '~/wiki/cs_wiki/',
+" 			\ 'path_html' : '~/Documents/wiki_html/cs_html/',
+" 			\ 'template_path': '~/.vim/templates/',
+" 			\ 'template_default': 'default',
+" 			\ 'template_ext': '.tpl',
+" 			\ 'auto_export' : 0},
+" 			\{
+" 			\ 'path' : '~/wiki/life_wiki/',
+" 			\ 'path_html' : '~/Documents/wiki_html/life_html/',
+" 			\ 'template_path': '~/.vim/templates/',
+" 			\ 'template_default': 'default',
+" 			\ 'template_ext': '.tpl',
+" 			\ 'auto_export' : 0},
+" 			\{
+" 			\ 'path' : '~/wiki/original_wiki/',
+" 			\ 'path_html' : '~/Documents/wiki_html/original_html/',
+" 			\ 'template_path': '~/.vim/templates/',
+" 			\ 'template_default': 'default',
+" 			\ 'template_ext': '.tpl',
+" 			\ 'auto_export' : 0},
+" 			\{
+" 			\ 'path' : '~/wiki/',
+" 			\ 'path_html' : '~/Documents/wiki_html/',
+" 			\ 'template_path': '~/.vim/templates/',
+" 			\ 'template_default': 'main',
+" 			\ 'template_ext': '.tpl',
+" 			\ 'auto_export' : 0}]
+" let g:vimwiki_valid_html_tags='a,br,blockquote,div,span'
+" let g:vimwiki_folding=1
+" let g:vimwiki_hl_headers=1
+" let g:vimwiki_auto_checkbox=1
+" let g:vimwiki_ext2syntax = {}
 
 
 " User-defined functions
-function! WikiDateInsert()
-        let l:winview = winsaveview()
-        0
-        read !date
-        0 delete
-        call winrestview(l:winview)
-endfunction
+" function! WikiDateInsert()
+"         let l:winview = winsaveview()
+"         0
+"         read !date
+"         0 delete
+"         call winrestview(l:winview)
+" endfunction
 
 
 " Go to last file(s) if invoked without arguments.
