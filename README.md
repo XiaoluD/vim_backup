@@ -101,5 +101,5 @@
 [2]:http://git-scm.com/book/zh/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E4%B8%BA%E9%A1%B9%E7%9B%AE%E4%BD%9C%E8%B4%A1%E7%8C%AE  
 [3]:http://git-scm.com/book/zh/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97  
 [4]:http://liluo.org/blog/2012/05/using-git-submodule-and-vim-pathogen-for-vim-configuraction-management/
-[5]:[https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal]
+[5]:https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal
 [6]:http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule
