@@ -3,17 +3,17 @@
 #备份数据
 
 ##仓库准备
-新建目录vim/bundle:  
+新建目录.vim/bundle:  
 
-    mkdir -pv vim/bundle
+    mkdir -pv .vim/bundle
 
-然后把vim目录变成一个Git仓库:
+然后把.vim目录变成一个Git仓库:
 
-    cd vim && git init
+    cd .vim && git init
 
 备份.vimrc：
 
-    cp ~/.vimrc ~/vim/.vimrc
+    cp ~/.vimrc ~/.vim/.vimrc
 
 ##安装插件
 使用子模块安装插件命令为： `git submodule add 插件的Git仓库地址 bundle/插件名字`
@@ -33,7 +33,7 @@
 
 通过git submodule foreach来可以一次性升级全部插件：  
 
-    git submodule foreach 'git checkout master && git pull
+    git submodule foreach 'git checkout master && git pull'
 
 ##删除插件
 删除一个插件稍微繁琐了一点（相比较添加和升级），需要两条命令：
@@ -90,15 +90,16 @@
     git submodule update	
 
 参考：  
-[使用 Pathogen + Git 管理 Vim 插件][]  	
-[分布式 Git - 为项目作贡献][]	 
-[Git 工具 - 子模块][]  
-[使用 Git Submodule 和 Vim-pathogen 管理、同步 Vim 插件及配置][]  
-[Git Submodule Tutorial][1]  
-[How do I remove a Git submodule?](http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule)
+[使用 Pathogen + Git 管理 Vim 插件][1]  
+[分布式 Git - 为项目作贡献][2]	 
+[Git 工具 - 子模块][3]  
+[使用 Git Submodule 和 Vim-pathogen 管理、同步 Vim 插件及配置][4]  
+[Git Submodule Tutorial][5]  
+[How do I remove a Git submodule?][6]
 
-[使用 Pathogen + Git 管理 Vim 插件]:http://lostjs.com/2012/02/04/use-pathogen-and-git-to-manage-vimfiles/  
-[分布式 Git - 为项目作贡献]:http://git-scm.com/book/zh/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E4%B8%BA%E9%A1%B9%E7%9B%AE%E4%BD%9C%E8%B4%A1%E7%8C%AE  
-[Git 工具 - 子模块]:http://git-scm.com/book/zh/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97  
-[使用 Git Submodule 和 Vim-pathogen 管理、同步 Vim 插件及配置]:http://liluo.org/blog/2012/05/using-git-submodule-and-vim-pathogen-for-vim-configuraction-management/
-[1]:[https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal]
+[1]:http://lostjs.com/2012/02/04/use-pathogen-and-git-to-manage-vimfiles/  
+[2]:http://git-scm.com/book/zh/%E5%88%86%E5%B8%83%E5%BC%8F-Git-%E4%B8%BA%E9%A1%B9%E7%9B%AE%E4%BD%9C%E8%B4%A1%E7%8C%AE  
+[3]:http://git-scm.com/book/zh/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97  
+[4]:http://liluo.org/blog/2012/05/using-git-submodule-and-vim-pathogen-for-vim-configuraction-management/
+[5]:[https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial#Removal]
+[6]:http://stackoverflow.com/questions/1260748/how-do-i-remove-a-git-submodule

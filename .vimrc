@@ -38,6 +38,7 @@ filetype plugin on              " enables filetype plugin
 filetype indent on 		     	" enables filetype indent
 color desert                    " color theme
 
+let g:html_number_lines = 0     "buffer text is displayed in the generated HTML without line numbering
 
 " for all file        
 " nmap <S-w> :w !sudo tee %<CR>
@@ -100,8 +101,8 @@ endif
 execute pathogen#infect()
 
 " conf for Powerline
-set laststatus=2               " Always show the statusline
-set t_Co=256                   " Explicitly tell Vim that the terminal support 256 colors
+set laststatus=2              " Always show the statusline
+set t_Co=256                  " Explicitly tell Vim that the terminal support 256 colors
 let g:Powerline_symbols = 'unicode'
 
 " conf for NERDTree
@@ -147,80 +148,10 @@ if has("gui_running")
                 map <D-0> :tablast<CR>
         endif
 endif
+
 " conf for tagbar: list the tags(function, class, variable, etc)
 " nmap <F3> :TagbarToggle<CR>
 " let g:tagbar_ctags_bin='/usr/bin/ctags' 
 " let g:tagbar_width = 40        " set tagbar's width 40
 " let g:tagbar_right = 1         " show the tagbar in the right
 " let g:tagbar_left = 1
-
-" conf for vimwiki
-" let wiki = {}
-" let wiki.nested_syntaxes = {'python': 'python', 'c++': 'cpp'}
-" let g:vimwiki_camel_case = 0   "don't take the CamelCasedWords as a new wiki
-" let g:vimwiki_list = [{
-" 			\ 'path' : '~/wiki/cs_wiki/',
-" 			\ 'path_html' : '~/Documents/wiki_html/cs_html/',
-" 			\ 'template_path': '~/.vim/templates/',
-" 			\ 'template_default': 'default',
-" 			\ 'template_ext': '.tpl',
-" 			\ 'auto_export' : 0},
-" 			\{
-" 			\ 'path' : '~/wiki/life_wiki/',
-" 			\ 'path_html' : '~/Documents/wiki_html/life_html/',
-" 			\ 'template_path': '~/.vim/templates/',
-" 			\ 'template_default': 'default',
-" 			\ 'template_ext': '.tpl',
-" 			\ 'auto_export' : 0},
-" 			\{
-" 			\ 'path' : '~/wiki/original_wiki/',
-" 			\ 'path_html' : '~/Documents/wiki_html/original_html/',
-" 			\ 'template_path': '~/.vim/templates/',
-" 			\ 'template_default': 'default',
-" 			\ 'template_ext': '.tpl',
-" 			\ 'auto_export' : 0},
-" 			\{
-" 			\ 'path' : '~/wiki/',
-" 			\ 'path_html' : '~/Documents/wiki_html/',
-" 			\ 'template_path': '~/.vim/templates/',
-" 			\ 'template_default': 'main',
-" 			\ 'template_ext': '.tpl',
-" 			\ 'auto_export' : 0}]
-" let g:vimwiki_valid_html_tags='a,br,blockquote,div,span'
-" let g:vimwiki_folding=1
-" let g:vimwiki_hl_headers=1
-" let g:vimwiki_auto_checkbox=1
-" let g:vimwiki_ext2syntax = {}
-
-
-" User-defined functions
-" function! WikiDateInsert()
-"         let l:winview = winsaveview()
-"         0
-"         read !date
-"         0 delete
-"         call winrestview(l:winview)
-" endfunction
-
-
-" Go to last file(s) if invoked without arguments.
-" http://vim.wikia.com/wiki/Open_the_last_edited_file
-"autocmd VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
-"    \ call mkdir($HOME . "/.vim") |
-"    \ endif |
-"    \ execute "mksession! " . $HOME . "/.vim/Session.vim"
-"
-"autocmd VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
-"    \ execute "source " . $HOME . "/.vim/Session.vim"
-
-
-" `0 Go to last position in a file.
-
-" surround the word with particular
-"function! s:surround()
-"    let word = expand("<cword>")
-"    let wrap= input("wrap with: ")
-"    let command = "s/".word."/".wrap.word.wrap."/"
-"    execute command
-"endfunction
-"nmap cx :call <SID>surround()<CR>
